@@ -18,7 +18,6 @@ class Parser:
         curr = self.next()
         while curr in ['+', '-']:
             self.match(curr)
-            #res += self.T()
             res = self.operations[curr](res, self.T())
             curr = self.next()
         return res
@@ -44,19 +43,20 @@ class Parser:
         numbers = []
         for i in range(10):
             numbers.append(str(i))
-        if self.next() in ['x', 'y', 'z']:
-        #if self.next() in numbers:
+        #if self.next() in ['x', 'y', 'z']:
+        if self.next() in numbers:
             tmp = self.next()
             self.match(tmp)
             print(tmp)
             #coverted = int(tmp)
-            return self.values[tmp]
-            #return tmp
+            #return self.values[tmp]
+            return int(tmp)
     
 
     def parse(self, s):
         self.numbers = list(map(str, range(10)))
         print(self.numbers[0].__class__)
+        print("parse " + s)
         self.pos = 0
         self.input = s + '#'
         return self.E()
